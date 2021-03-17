@@ -6,5 +6,3 @@ An Ontology for Operator 4.0 based on Interoperability of Industrie 4.0 Referenc
 •	Information: Retrieved the classes of topics from context broker and identify what data can be used  
 •	Function: (Function Function) Identify what the human data represent (if operator is healthy, what poses are made)
 •	Business: (Function Business)
-![Uploading image.png…]()
-
