@@ -31,23 +31,23 @@ PATCH <br />
 	•	If the Client Sends data with an identifier then we will check whether that identifier exists. If the identifier exists we will update data else we will throw an exception. <br />
 	
 <br />
-For extra information about the HTTP request, we can use Swagger UI to access more info on it
-<br />
-To access Swagger UI we start with running this in the terminal:
-<br />
+For extra information about the HTTP request, we can use Swagger UI to access more info on it <br />
+
+To access Swagger UI we start with running this in the terminal:<br />
+
 ```ruby
 docker run -p 80:8080 swaggerapi/swagger-ui
 ```
 <br />
-Then in Chrome type in:
-<br />
+Then in Chrome type in:<br />
+
 ```ruby
 localhost:80
 ```
 <br />
-Lastly in the search column type in:
-<br />
+Lastly in the search column type in: <br />
+
 ```ruby
 https://raw.githubusercontent.com/Fiware/specifications/master/OpenAPI/ngsiv2/ngsiv2-openapi.json
 ```
-<br />
+
