@@ -4,6 +4,14 @@ import requests
 
 risk_count = 0
 risk_avr = 0
+fppx = []
+fppy = []
+fppz = []
+fpox = []
+fpoy = []
+fpoz = []
+fpow = []
+
 
 head = {"Content-Type": "application/json"}
 
@@ -28,11 +36,27 @@ print("The average of the risk: ", risk_avr)
 
 with open("tracepen_pose.json", "r+", encoding="utf-8") as file2:
     tracepen1 = json.load(file2)
+    
+for a in range(3): 
     for i in tracepen1:
-      if i['field.header.seq'] == 0:
-        print(i['field.pose.position.x'])
-        print(i['field.pose.position.y'])
+      if i['field.header.seq'] == a:
+        fppx.append(i['field.pose.position.x'])
+        fppy.append(i['field.pose.position.y'])
+        fppz.append(i['field.pose.position.z'])
+        fpox.append(i['field.pose.orientation.x'])
+        fpoy.append(i['field.pose.orientation.y'])
+        fpoz.append(i['field.pose.orientation.z'])
+        fpow.append(i['field.pose.orientation.w'])
+
         break
+
+print("The first three field.pose.position.x: ", fppx)
+print("The first three field.pose.position.y: ", fppy)
+print("The first three field.pose.position.z: ", fppz)
+print("The first three field.pose.orientation.x: ", fpox)
+print("The first three field.pose.orientation.y: ", fpoy)
+print("The first three field.pose.orientation.z: ", fpoz)
+print("The first three field.pose.orientation.w: ", fpow)
 
 payload={
   "@context": {
@@ -56,21 +80,150 @@ payload={
 }
 
 operator1={
+   "@context":{
+      "craneoperator":"http://a.b.c/attrs/status",
+      "device":"https://uri.fiware.org/ns/data-models#Device",
+      "alert" : "https://uri.fiware.org/ns/data-models#Alert"
+   },
+   "id":"urn:entities:E5",
+   "type":"healthyoperator",
+   "craneoperator":{
+      "type":"Property",
+      "value":"vcard",
+      "firstname":{
+         "type":"Property",
+         "value":"Tom"
+      },
+      "lastname":{
+         "type":"Property",
+         "value":"Gomez"
+      },
+      "hasemail":{
+         "type":"Property",
+         "value":"t.gomez@gmail.com"
+      },
+      "gender":{
+         "type":"Property",
+         "value":"m"
+      },
+      "bday":{
+         "type":"Property",
+         "value":"18.05.1959"
+      },
+      "address":{
+         "type":"Property",
+         "value":"Gotthardstr. 135"
+      }
+   },
+
+   "device":{
+      "type":"Property",
+      "value":"sensor",
+      "batteryLevel": {
+        "type": "Property",
+        "value": 0.75
+    },
+    "dateFirstUsed": {
+        "type": "Property",
+        "value": "20.02.2021"
+    },
+    "serialNumber": {
+        "type": "Property",
+        "value": "9845A"
+    }
+   },
+    "ergonomics":{
+      "type":"Property",
+      "value":"test",
+      "risk":{
+         "type":"Property",
+         "value":risk_avr
+      }
+   },
+   "healthlevel":{
+      "type":"Property",
+      "value":"test",
+      "heartrate":{
+         "type":"Property",
+         "value":"test"
+      },
+      "bloodpressure_h":{
+         "type":"Property",
+         "value":"test"
+      },
+      "bloodpressure_l":{
+         "type":"Property",
+         "value":"test"
+      },
+      "bloodsugar":{
+         "type":"Property",
+         "value":"test"
+      }
+   },
+
+   "alert":{
+      "type": "Property",
+      "value":"alert",
+      "category": {
+        "type": "Property",
+        "value": "traffic"
+      },
+      "subCategory": {
+        "type": "Property",
+        "value": "trafficJam"
+      },
+      "description": {
+        "type": "Property",
+        "value": "The road is completely blocked for 3kms"
+      },
+      "location": {
+        "type": "Property",
+        "value": "Munich"
+      },
+      "alertSource": {
+        "type": "Property",
+        "value": "https://account.lab.fiware.org/users/8"
+      },
+    "severity": {
+        "type": "Property",
+        "value": "high"
+    }
+   }
+}
+
+
+operator2={ #this is the original operator 2, with this information.py can retrieve the json
   "@context": {
-    "status": "http://a.b.c/attrs/status",
+    "tracepen":  "http://a.b.c/attrs/state"
+  },
+  "id": "urn:entities:E7",
+  "type": "augmentedoperator",
+  "tracepen": {
+    "type": "Property",
+    "value": {
+      "time": "test",
+      "poseposition_x": fppx[1],
+      "poseposition_y": fppy[1],
+      "poseposition_z": fppz[1],
+      "poseorientation_x": fpox[1],
+      "poseorientation_y": fpoy[1],
+      "poseorientation_z": fpoz[1],
+      "poseorientation_w": fpow[1]
+    }
+  }
+}
+
+'''
+operator2={ #this is the updated operator 2, with this information.py can not retrieve the json
+  "@context": {
     "craneoperator": "http://a.b.c/attrs/status",
     "device": "http://a.b.c/attrs/status",
-    "ergonomics": "http://a.b.c/attrs/status",
-    "healthlevel": "http://a.b.c/attrs/status",
-    "position":  "http://a.b.c/attrs/state"
-  },
-  "id": "urn:entities:E1",
-  "type": "healthyoperator",
-  "status": {
-    "type": "Property",
-    "value": "From Core Context"
-    },
+    "measurement": "http://a.b.c/attrs/status",
+    "position": "http://a.b.c/attrs/status"
+   },
 
+  "id": "urn:entities:E7",
+  "type": "augmentedoperator",
   "craneoperator": {
     "type": "Property",
     "value": "vcard",
@@ -92,9 +245,9 @@ operator1={
     "address": {
       "type": "Property",
       "value": "Gotthardstr. 135"}  
-  },
+   },
 
-  "device": {
+   "device": {
     "type": "Property",
     "value": "",
     "deviceID": {
@@ -103,93 +256,58 @@ operator1={
     "producedyear": {
       "type": "Property",
       "value": ""}
-  },
+   },
 
-
-  "ergonomics": {
+  "measurement": {
     "type": "Property",
     "value": "",
-    "risk": {
-    "type": "Property",
-    "value": risk_avr}
-  },
-
-
-  "healthlevel": {
-    "type": "Property",
-    "value": "",
-    "heartrate": {
-      "type": "Property",
-      "value": ""},
-    "bloodpressure_h": {
-      "type": "Property",
-      "value": ""},
-    "bloodpressure_l": {
-      "type": "Property",
-      "value": ""},
-    "bloodsugar": {
-      "type": "Property",
-      "value": ""}, 
-  },
-
-  "position": {
-    "type": "Property",
-    "value": "",
-    "trackerpose": {
+    "distance": {
       "type": "Property",
       "value": "",
-      "x": {
+      "target": {
        "type": "Property",
        "value": "" },
-      "y": {
+      "indepth": {
+       "type": "Property",
+       "value": "" }
+   }
+  },
+
+   "position": {
+    "type": "Property",
+    "value": "",
+    "tracepen_pose": {
+      "type": "Property",
+      "value": "",
+      "position.x": {
        "type": "Property",
        "value": "" },
-      "z": {
+      "position.y": {
+       "type": "Property",
+       "value": "" },
+      "position.z": {
+       "type": "Property",
+       "value": "" },
+      "orientation.x": {
+       "type": "Property",
+       "value": "" },
+      "orientation.y": {
+       "type": "Property",
+       "value": "" },
+      "orientation.z": {
+       "type": "Property",
+       "value": "" },
+      "orientation.w": {
        "type": "Property",
        "value": "" },
       "timestamp": {
        "type": "Property",
        "value": "" }
-      },
-    "humanpose": {
-      "type": "Property",
-      "value": "",
-      "x": {
-       "type": "Property",
-       "value": "" },
-      "y": {
-       "type": "Property",
-       "value": "" },
-      "z": {
-       "type": "Property",
-       "value": "" }
-      }
-  },
-
-
-}
-
-
-operator2={
-  "@context": {
-    "tracepen":  "http://a.b.c/attrs/state"
-  },
-  "id": "urn:entities:E7",
-  "type": "augmentedoperator",
-  "tracepen": {
-    "type": "Property",
-    "value": {
-      "time": "",
-      "pose.position.x": "From Core Context",
-      "pose.position.y": "From Core Context",
-      "pose.position.z": "From Core Context",
-      "pose.orientation.x": "From Core Context",
-      "pose.orientation.y": "From Core Context",
-      "pose.orientation.z": "From Core Context",
-      "pose.orientation.w": "From Core Context"
-    }
+   }
   }
 }
+'''
+
 
 testdata=json.dumps(operator1)
 testdata2=json.dumps(operator2)
@@ -199,11 +317,15 @@ testdata3=json.dumps(payload)
 ##response = requests.post(url, headers={ "content-type": "application/ld+json"}, data=json.dumps(payload))
 #response = requests.put(url, data=testdata, headers=head)
 
-response = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
-    "content-type": "application/ld+json"}, data=testdata)
+#response = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
+    #"content-type": "application/ld+json"}, data=testdata2)
+
+response2 = requests.put(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
+    "content-type": "application/ld+json"}, data=testdata2)
 
 #print(testdata)
 #print("")
 
 
-#print(response.status_code)
+print(response2.status_code)
+
