@@ -1,0 +1,36 @@
+{
+   "$schema":"http://json-schema.org/schema#",
+   "$schemaVersion":"0.0",
+   "$id":"https://smart-data-models.github.io/dataModel.Health/HealthLevelMeasurement/schema.json",
+   "title":" Smart Data Models - HealthLevelMeasurement",
+   "description":"Health Sensor Data Model intended to represent the values of heartrate, bloodpressure, bloodsugar, etc..",
+   "type":"object",
+   "allOf":[
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+      },
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+      },
+      {
+         "properties":{
+            "heartrate":{
+               "type":"number",
+               "description":"Property. Model:'https://schema.org/Number'. the number of times a person's heart beats (= moves regularly) in a minute"
+            },
+            "bloodpressure_h":{
+               "type":"number",
+               "description":"Property. Model:'https://schema.org/Number'. The top number refers to the amount of pressure in your arteries during the contraction of your heart muscle. This is called systolic pressure."
+            },
+            "bloodpressure_l":{
+               "type":"number",
+               "description":"Property. Model:'https://schema.org/Number'. The bottom number refers to your blood pressure when your heart muscle is between beats. This is called diastolic pressure."
+            },
+            "bloodsugar":{
+               "type":"number",
+               "description":"Property. Model:'https://schema.org/Number'. the concentration of glucose present in the blood of humans"
+            }
+         }
+      }
+   ]
+}
