@@ -1,0 +1,32 @@
+{
+   "$schema":"http://json-schema.org/schema#",
+   "$schemaVersion":"0.0",
+   "$id":"https://smart-data-models.github.io/dataModel.Risk/RiskLevelMeasurement/schema.json",
+   "title":" Smart Data Models - RiskLevelMeasurement",
+   "description":"Risk level of ergonomic assessment, only performing ergonomic evaluation when two views are available and main keypoints are well detected. Including specific descriptions: risk factor, signs or symptoms and rula risk level..",
+   "type":"object",
+   "allOf":[
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+      },
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+      },
+      {
+         "properties":{
+            "riskFactor":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. risk factors are for example: Coronary artery disease, smoking, Systolic blood pressure, age, etc."
+            },
+            "signOrSymptom":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. sign or symptoms are for example: chest discomfort, headache, feeling fatigue, etc."
+            },
+            "rulaRiskLevel":{
+               "type":"number",
+               "description":"Property. Model:'https://schema.org/Number'. rula level \u2013 1-2: neglibible risk (no action required), 3-4: low risk(change may be needed), 5-6: medium risk(further investigation, change soon), 6+: very high risk(implement change now)"
+            }
+         }
+      }
+   ]
+}
