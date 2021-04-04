@@ -1,0 +1,34 @@
+{
+   "$schema":"http://json-schema.org/schema#",
+   "$schemaVersion":"0.0",
+   "$id":"https://smart-data-models.github.io/dataModel.Tracepen/TracepenPoseMeasurement/schema.json",
+   "title":" Smart Data Models - TracepenPoseMeasurement",
+   "description":"Posistion and orientation of tracker/end effector -- clear position in the hand of the operator.",
+   "type":"object",
+   "allOf":[
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+      },
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+      },
+      {
+         "properties":{
+            "posePosition":{
+               "type":"array",
+               "description":"Property. pose position contains x, y, z ",
+               "items":{
+                  
+               }
+            },
+            "poseOrientation":{
+               "type":"array",
+               "description":"Property. pose orientation contains x, y, z, and w",
+               "items":{
+                  
+               }
+            }
+         }
+      }
+   ]
+}
