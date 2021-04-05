@@ -1,0 +1,44 @@
+{
+   "$schema":"http://json-schema.org/schema#",
+   "$schemaVersion":"0.0",
+   "$id":"https://smart-data-models.github.io/dataModel.Operator/OperatorInfo/schema.json",
+   "title":" Smart Data Models - OperatorInfo",
+   "description":"Information of operator, mainly with combination with operator 4.0..",
+   "type":"object",
+   "allOf":[
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/GSMA-Commons"
+      },
+      {
+         "$ref":"https://smart-data-models.github.io/data-models/common-schema.json#/definitions/Location-Commons"
+      },
+      {
+         "properties":{
+            "firstname":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. operator's first name"
+            },
+            "lastname":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. operator's flast name"
+            },
+            "hasemail":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. operator's email"
+            },
+            "gender":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. operator's gender"
+            },
+            "bday":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. operator's birthday"
+            },
+            "address":{
+               "type":"string",
+               "description":"Property. Model:'https://schema.org/Text'. operator's address"
+            }
+         }
+      }
+   ]
+}
