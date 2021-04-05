@@ -81,13 +81,15 @@ payload={
 
 operator1={
    "@context":{
-      "craneoperator":"http://a.b.c/attrs/status",
+      "operator":"https://github.com/j5j1j2j3/thesis.code-implementation/blob/ea1bffffe701b32f0657a7f1eec9f0763fcd3a73/operatorinfo.json",
       "device":"https://uri.fiware.org/ns/data-models#Device",
+      "risklevel": "https://github.com/j5j1j2j3/thesis.code-implementation/blob/dd50ed4fa73e1d4830a91756e0d02abacee8bffc/risklevel.json",
+      "healthlevel":"https://github.com/j5j1j2j3/thesis.code-implementation/blob/dd50ed4fa73e1d4830a91756e0d02abacee8bffc/healthlevel.json",
       "alert" : "https://uri.fiware.org/ns/data-models#Alert"
    },
    "id":"urn:entities:E5",
    "type":"healthyoperator",
-   "craneoperator":{
+   "operator":{
       "type":"Property",
       "value":"vcard",
       "firstname":{
@@ -132,10 +134,18 @@ operator1={
         "value": "9845A"
     }
    },
-    "ergonomics":{
+    "risklevel":{
       "type":"Property",
       "value":"test",
-      "risk":{
+      "riskFactor":{
+         "type":"Property",
+         "value":"undetermined"
+      },
+      "signOrSymptom":{
+         "type":"Property",
+         "value":"undetermined"
+      },
+      "rulaRiskLevel":{
          "type":"Property",
          "value":risk_avr
       }
@@ -145,19 +155,19 @@ operator1={
       "value":"test",
       "heartrate":{
          "type":"Property",
-         "value":"test"
+         "value":"undetermined"
       },
       "bloodpressure_h":{
          "type":"Property",
-         "value":"test"
+         "value":"undetermined"
       },
       "bloodpressure_l":{
          "type":"Property",
-         "value":"test"
+         "value":"undetermined"
       },
       "bloodsugar":{
          "type":"Property",
-         "value":"test"
+         "value":"undetermined"
       }
    },
 
@@ -166,27 +176,27 @@ operator1={
       "value":"alert",
       "category": {
         "type": "Property",
-        "value": "traffic"
+        "value": "operator's risk"
       },
       "subCategory": {
         "type": "Property",
-        "value": "trafficJam"
+        "value": "operator's risk based on rula"
       },
       "description": {
         "type": "Property",
-        "value": "The road is completely blocked for 3kms"
+        "value": "Risk level of ergonomic assessment, only performing ergonomic evaluation when two views are available and main keypoints are well detected. Including specific descriptions: risk factor, signs or symptoms and rula risk level.."
       },
       "location": {
         "type": "Property",
-        "value": "Munich"
+        "value": "undetermined"
       },
       "alertSource": {
         "type": "Property",
-        "value": "https://account.lab.fiware.org/users/8"
+        "value": "undetermined"
       },
     "severity": {
         "type": "Property",
-        "value": "high"
+        "value": "undetermined"
     }
    }
 }
@@ -194,21 +204,20 @@ operator1={
 
 operator2={ #this is the original operator 2, with this information.py can retrieve the json
   "@context": {
-    "tracepen":  "http://a.b.c/attrs/state"
+    "tracepen":  "https://github.com/j5j1j2j3/thesis.code-implementation/blob/9bf76dde52cfdbe585c6cc2f980499fd11e213e0/tracepenpose.json"
   },
-  "id": "urn:entities:E7",
+  "id": "urn:entities:E8",
   "type": "augmentedoperator",
   "tracepen": {
     "type": "Property",
-    "value": {
-      "time": "test",
-      "poseposition_x": fppx[1],
-      "poseposition_y": fppy[1],
-      "poseposition_z": fppz[1],
-      "poseorientation_x": fpox[1],
-      "poseorientation_y": fpoy[1],
-      "poseorientation_z": fpoz[1],
-      "poseorientation_w": fpow[1]
+    "value": "tracepen",
+    "posePosition": {
+      "type": "Property",
+      "value": [fppx[1],fppy[1],fppz[1]]
+    },
+    "poseOrientation" : {
+      "type": "Property",
+      "value": [fpox[1], fpoy[1], fpoz[1], fpow[1]]
     }
   }
 }
@@ -320,7 +329,7 @@ testdata3=json.dumps(payload)
 #response = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
     #"content-type": "application/ld+json"}, data=testdata2)
 
-response2 = requests.put(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
+response2 = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
     "content-type": "application/ld+json"}, data=testdata2)
 
 #print(testdata)
