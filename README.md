@@ -7,6 +7,12 @@ An Ontology for Operator 4.0 based on Interoperability of Industrie 4.0 Referenc
 •	Function: (Function Function) Identify what the human data represent (if operator is healthy, what poses are made) <br />
 •	Business: (Function Business) <br /> <br />
 
+If this is the first time you are running the repo please add:<br />
+```ruby
+docker network create fiware_default
+```
+<br />
+
 Start of Docker with MongoDB <br />
 ```ruby
 docker run -d --name=mongo-db --network=fiware_default  --expose=27017 mongo:4.2 --bind_ip_all

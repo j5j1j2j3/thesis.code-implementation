@@ -15,9 +15,9 @@ fpow = []
 
 head = {"Content-Type": "application/json"}
 
-with open("test.json") as jsonFile:
-    jsonObject = json.load(jsonFile)
-    jsonFile.close()
+#with open("test.json") as jsonFile:
+#    jsonObject = json.load(jsonFile)
+#    jsonFile.close()
 
 with open("risk.json", "r+", encoding="utf-8") as file:
     risk = json.load(file)
@@ -326,7 +326,7 @@ testdata3=json.dumps(payload)
 ##response = requests.post(url, headers={ "content-type": "application/ld+json"}, data=json.dumps(payload))
 #response = requests.put(url, data=testdata, headers=head)
 
-response = requests.post(url='http://localhost:1026/ngsi-ld/v2/entities', headers={ 
+response = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={ 
      "content-type": "application/ld+json"}, data=testdata)
 
 #response2 = requests.post(url='http://localhost:1026/ngsi-ld/v2/entities', headers={
