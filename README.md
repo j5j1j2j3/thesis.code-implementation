@@ -9,15 +9,13 @@ An Ontology for Operator 4.0 based on Interoperability of Industrie 4.0 Referenc
 
 Start of Docker with MongoDB <br />
 ```ruby
-docker run -d --name=mongo-db --network=fiware_default \
-  --expose=27017 mongo:4.2 --bind_ip_all
+docker run -d --name=mongo-db --network=fiware_default  --expose=27017 mongo:4.2 --bind_ip_all
 ```
 <br />
 
 Then proceed with Orion LD <br />
 ```ruby
-docker run -d --name fiware-orion-ld -h orion-ld --network=fiware_default \
-  -p 1026:1026  fiware/orion-ld -dbhost mongo-db
+docker run -d --name fiware-orion-ld -h orion-ld --network=fiware_default -p 1026:1026  fiware/orion-ld -dbhost mongo-db
 ```
 <br />
 
