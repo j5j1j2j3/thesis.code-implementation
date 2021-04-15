@@ -230,7 +230,6 @@ operator2={ #this is the updated operator 2, with this information.py can not re
     "measurement": "http://a.b.c/attrs/status",
     "position": "http://a.b.c/attrs/status"
    },
-
   "id": "urn:entities:E7",
   "type": "augmentedoperator",
   "craneoperator": {
@@ -255,7 +254,6 @@ operator2={ #this is the updated operator 2, with this information.py can not re
       "type": "Property",
       "value": "Gotthardstr. 135"}  
    },
-
    "device": {
     "type": "Property",
     "value": "",
@@ -266,7 +264,6 @@ operator2={ #this is the updated operator 2, with this information.py can not re
       "type": "Property",
       "value": ""}
    },
-
   "measurement": {
     "type": "Property",
     "value": "",
@@ -281,7 +278,6 @@ operator2={ #this is the updated operator 2, with this information.py can not re
        "value": "" }
    }
   },
-
    "position": {
     "type": "Property",
     "value": "",
@@ -329,13 +325,14 @@ testdata3=json.dumps(payload)
 response = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={ 
      "content-type": "application/ld+json"}, data=testdata)
 
-#response2 = requests.post(url='http://localhost:1026/ngsi-ld/v2/entities', headers={
-    #"content-type": "application/ld+json"}, data=testdata2)
+response2 = requests.post(url='http://localhost:1026/ngsi-ld/v1/entities', headers={
+    "content-type": "application/ld+json"}, data=testdata2)
 
 #print(testdata)
 
 print(response.status_code)
-#print(response2.status_code)
+
+print(response2.status_code)
 
 #url='http://localhost:1026/ngsi-ld/v1/entities?id=urn:entities:E6'
 #response3 = requests.get(url)
