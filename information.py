@@ -8,13 +8,13 @@ json_data = json.loads(response.text)
 for r in json_data:
        risk_value = r["https://github.com/j5j1j2j3/thesis.code-implementation/blob/dd50ed4fa73e1d4830a91756e0d02abacee8bffc/risklevel.json"]["rulaRiskLevel"]["value"]
        if risk_value >= 1.0 and risk_value <= 2.0:
-              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "neglibible risk"
+              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "informational"
        if risk_value >= 3.0 and risk_value <= 4.0:
-              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "low risk"
+              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "low"
        if risk_value >= 5.0 and risk_value <= 6.0:
-              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "medium risk"
+              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "medium"
        if risk_value >= 6.0:
-              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "very high risk"
+              r["https://uri.fiware.org/ns/data-models#Alert"]["severity"]["value"] = "high"
 
 
 
