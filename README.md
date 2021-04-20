@@ -7,6 +7,8 @@ An Ontology for Operator 4.0 based on Interoperability of Industrie 4.0 Referenc
 •	Function: (Function Function) Identify what the human data represent (if operator is healthy, what poses are made) <br />
 •	Business: (Function Business) <br /> <br />
 
+
+
 If this is the first time you are running the repo please add:<br />
 ```ruby
 docker network create fiware_default
@@ -54,4 +56,5 @@ Lastly in the search column type in: <br />
 ```ruby
 https://raw.githubusercontent.com/Fiware/specifications/master/OpenAPI/ngsiv2/ngsiv2-openapi.json
 ```
-
+<br />
+More information about how to start up Orion-LD FIWARE: https://github.com/FIWARE/context.Orion-LD<br />
